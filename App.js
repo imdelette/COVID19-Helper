@@ -2,7 +2,8 @@ import { useState, React } from 'react';
 import AppLoading from 'expo-app-loading';
 import  * as Font from 'expo-font';
 
-import MainStack from './Navigate';
+import MainDrawer from './DrawerNavigate';
+import { View } from 'react-native-web';
 
 const fonts = () => Font.loadAsync({
     'rs-bold': require('./assets/fonts/RobotoSlab/RobotoSlab-Bold.ttf'),
@@ -14,7 +15,7 @@ export default function App() {
 
   if(font) {
     return (
-      <MainStack />
+      <MainDrawer />
     );
   } else {
     return (
