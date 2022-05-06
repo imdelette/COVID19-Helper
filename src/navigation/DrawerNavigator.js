@@ -3,36 +3,34 @@ import { Button, View } from 'react-native';
 import { createDrawerNavigator, DrawerContentScrollView, DrawerItem } from '@react-navigation/drawer';
 import { NavigationContainer } from '@react-navigation/native';
 
-import MainScreen from './src/screens/MainScreen';
-import LoginScreen from './src/screens/LoginScreen';
-import ExcerciseTypesScreen from './src/screens/ExcerciseTypesScreen';
-import ExcerciseScreen from './src/screens/ExcerciseScreen';
+import LoginScreen from '../screens/LoginScreen';
+import ExcerciseTypesScreen from '../screens/ExcerciseTypesScreen';
+import ExcerciseScreen from '../screens/ExcerciseScreen';
+import TabNavigator from './TabNavigator';
 
 const Drawer = createDrawerNavigator();
 
-
-
-export default function DrawerNavigate() {
+export default function DrawerNavigator() {
   return (
     <NavigationContainer>
       <Drawer.Navigator>
         <Drawer.Screen
-          name="MainScreen"
-          component={MainScreen}
+          name="Home"
+          component={TabNavigator}
           options={{title: 'Главная'}}
           />
         <Drawer.Screen
-            name="ExcercisesScreen"
+            name="ExcerciseTypes"
             component={ExcerciseTypesScreen}
             options={{title: 'Виды упражнений'}}
             />
         <Drawer.Screen
-          name="LoginScreen"
+          name="Login"
           component={LoginScreen}
           options={{title: 'Авторизация'}}
           />
         <Drawer.Screen
-            name="ExcerciseTypeScreen"
+            name="Excercise"
             component={ExcerciseScreen}
             options={{title: 'Упражнение', drawerItemStyle: {display: 'none'}}}
             />

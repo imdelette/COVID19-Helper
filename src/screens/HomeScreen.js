@@ -3,7 +3,7 @@ import {  View, Text, Button } from 'react-native';
 
 import { globalStyle } from  '../styles/style';
 
-export default function MainDrawer({ navigation }) {
+export default function HomeScreen({ navigation }) {
     return (
         <View style={globalStyle.main}>
             <View style={globalStyle.button}>

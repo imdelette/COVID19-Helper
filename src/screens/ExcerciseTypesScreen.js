@@ -42,7 +42,7 @@ export default function ExcerciseTypesScreen({ navigation }) {
             <Text style={globalStyle.title}>Здесь могла быть ваша реклама</Text>
             <View style={styles.flatList}>
                 <FlatList data={excercises} renderItem={({item}) => (
-                    <TouchableOpacity style={styles.btn} onPress={() => navigation.navigate('ExcerciseTypeScreen', item)}>
+                    <TouchableOpacity style={styles.btn} onPress={() => navigation.navigate('ExcerciseScreen', item)}>
                             <Text>{item.name}</Text>   
                     </TouchableOpacity>
                 )}/>
@@ -58,6 +58,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
     },
     btn: {
+        display: 'flex',
         width: "40%",
         borderRadius: 25,
         height: 50,
@@ -65,6 +66,7 @@ const styles = StyleSheet.create({
         justifyContent: "center",
         marginTop: 20,
         marginBottom: 20,
-        backgroundColor: "violet",
+        padding: 10,
+        backgroundColor: "silver",
     }  
 })

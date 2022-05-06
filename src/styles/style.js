@@ -1,6 +1,6 @@
+import React from 'react';
 import { StyleSheet } from 'react-native';
 
-//TODO: настроить стили
 export const globalStyle = StyleSheet.create({
     main: {
         flex: 1,
@@ -24,6 +24,6 @@ export const globalStyle = StyleSheet.create({
         justifyContent: "center",
         marginTop: 20,
         marginBottom: 20,
-        backgroundColor: "violet",
+        backgroundColor: 'silver',
     },
 })
