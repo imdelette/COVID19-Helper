@@ -4,14 +4,14 @@ import { StyleSheet, Text, View, Image, TextInput, TouchableOpacity, } from "rea
 
 import { globalStyle } from "../styles/style";
  
-export default function Login() {
+const AuthForm = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
- 
+}
+
+export default function Login() {
   return (
     <View style={styles.container}>
-      {/* <Image style={styles.image} source={require("")} /> */}
- 
       <StatusBar style="auto" />
       <View style={styles.inputView}>
         <TextInput
@@ -37,7 +37,7 @@ export default function Login() {
       </TouchableOpacity>
  
       <TouchableOpacity style={globalStyle.btn}>
-        <Text style={styles.loginText}>ВОЙТИ</Text>
+        <Text>ВОЙТИ</Text>
       </TouchableOpacity>
     </View>
   );
@@ -52,12 +52,11 @@ const styles = StyleSheet.create({
   },
 
   inputView: {
-    backgroundColor: "#FFC0CB",
+    backgroundColor: "powderblue",
     borderRadius: 30,
     width: "70%",
     height: 45,
     marginBottom: 20,
- 
     alignItems: "center",
   },
  
