@@ -13,28 +13,28 @@ const Drawer = createDrawerNavigator();
 export default function DrawerNavigator() {
   return (
     <NavigationContainer>
-      <Drawer.Navigator>
-        <Drawer.Screen
-          name="Home"
-          component={TabNavigator}
-          options={{title: 'Главная'}}
-          />
-        <Drawer.Screen
-            name="ExcerciseTypes"
-            component={ExcerciseTypesScreen}
-            options={{title: 'Виды упражнений'}}
+        <Drawer.Navigator>
+          <Drawer.Screen
+            name="Home"
+            component={TabNavigator}
+            options={{title: 'Главная'}}
             />
-        <Drawer.Screen
-          name="Login"
-          component={LoginScreen}
-          options={{title: 'Авторизация'}}
-          />
-        <Drawer.Screen
-            name="Excercise"
-            component={ExcerciseScreen}
-            options={{title: 'Упражнение', drawerItemStyle: {display: 'none'}}}
+          <Drawer.Screen
+              name="ExcerciseTypes"
+              component={ExcerciseTypesScreen}
+              options={{title: 'Виды упражнений'}}
+              />
+          <Drawer.Screen
+            name="Login"
+            component={LoginScreen}
+            options={{title: 'Авторизация'}}
             />
-      </Drawer.Navigator>
+          <Drawer.Screen
+              name="Excercise"
+              component={ExcerciseScreen}
+              options={{title: 'Упражнение', drawerItemStyle: {display: 'none'}}}
+              />
+        </Drawer.Navigator>
     </NavigationContainer>
   );
 }

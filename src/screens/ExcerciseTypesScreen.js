@@ -1,5 +1,5 @@
 import { React, useState } from 'react';
-import { Text, View, FlatList, TouchableOpacity, Button, StyleSheet } from 'react-native';
+import { Text, View, SectionList, FlatList, TouchableOpacity, Button, StyleSheet } from 'react-native';
 
 import { globalStyle } from  '../styles/style';
 
@@ -28,21 +28,21 @@ export default function ExcerciseTypesScreen({ navigation }) {
             full: 'И тут',
         },
         {
-            name: 'Выполнение повседневных функций',
-            full: 'Здесь',
-        },
-        {
             name: 'Преодоление стресса',
             full: 'Тут тоже',
+        },
+        {
+            name: 'Выполнение повседневных функций',
+            full: 'Здесь',
         },
     ]) 
 
     return (
         <View style={globalStyle.main}>
             <Text style={globalStyle.title}>Здесь могла быть ваша реклама</Text>
-            <View style={styles.flatList}>
+            <View>
                 <FlatList data={excercises} renderItem={({item}) => (
-                    <TouchableOpacity style={styles.btn} onPress={() => navigation.navigate('ExcerciseScreen', item)}>
+                    <TouchableOpacity style={styles.btn} onPress={() => navigation.navigate('Excercise', item)}>
                             <Text>{item.name}</Text>   
                     </TouchableOpacity>
                 )}/>
@@ -52,21 +52,22 @@ export default function ExcerciseTypesScreen({ navigation }) {
 }
 
 const styles = StyleSheet.create({
-    flatList: {
-        flexWrap: 'wrap',
-        alignItems: 'flex-start',
+    list: {
+        flex: 1,
+        flexWrap: 1,
         flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'flex-start',
     },
     btn: {
-        display: 'flex',
         width: "40%",
         borderRadius: 25,
-        height: 50,
+        height: 75,
         alignItems: "center",
         justifyContent: "center",
-        marginTop: 20,
-        marginBottom: 20,
-        padding: 10,
-        backgroundColor: "silver",
+        marginTop: 10,
+        marginBottom: 10,
+        padding: 5,
+        backgroundColor: "skyblue",
     }  
 })

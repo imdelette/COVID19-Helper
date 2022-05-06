@@ -7,10 +7,6 @@ import { globalStyle } from "../styles/style";
 const AuthForm = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
-  const authHandler = () => {
-    
-  }
 }
 
 export default function Login() {
@@ -56,7 +52,7 @@ const styles = StyleSheet.create({
   },
 
   inputView: {
-    backgroundColor: "#FFC0CB",
+    backgroundColor: "powderblue",
     borderRadius: 30,
     width: "70%",
     height: 45,

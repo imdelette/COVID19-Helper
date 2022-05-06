@@ -5,7 +5,8 @@ export const globalStyle = StyleSheet.create({
     main: {
         flex: 1,
         padding: 20,
-        borderRadius: 10
+        borderRadius: 10,
+        backgroundColor: 'white',
     },
     title: {
         fontSize: 20,
@@ -24,6 +25,6 @@ export const globalStyle = StyleSheet.create({
         justifyContent: "center",
         marginTop: 20,
         marginBottom: 20,
-        backgroundColor: 'silver',
+        backgroundColor: 'skyblue',
     },
 })
