@@ -43,7 +43,7 @@ export default function ExcerciseTypesScreen({ navigation }) {
             <View>
                 <FlatList data={excercises} renderItem={({item}) => (
                     <TouchableOpacity style={styles.btn} onPress={() => navigation.navigate('Excercise', item)}>
-                            <Text>{item.name}</Text>   
+                            <Text style={styles.text}>{item.name}</Text>   
                     </TouchableOpacity>
                 )}/>
             </View>
@@ -57,17 +57,20 @@ const styles = StyleSheet.create({
         flexWrap: 1,
         flexDirection: 'row',
         alignItems: 'center',
-        justifyContent: 'flex-start',
+        justifyContent: 'center',
+        marginTop: 2,
     },
     btn: {
-        width: "40%",
         borderRadius: 25,
-        height: 75,
+        width: 'auto',
+        height: 60,
         alignItems: "center",
         justifyContent: "center",
-        marginTop: 10,
-        marginBottom: 10,
-        padding: 5,
+        marginTop: 8,
+        marginBottom: 8,
         backgroundColor: "skyblue",
-    }  
+    },
+    text: {
+        fontSize: 17,
+    },
 })

@@ -39,6 +39,10 @@ export default function Login() {
       <TouchableOpacity style={globalStyle.btn}>
         <Text>ВОЙТИ</Text>
       </TouchableOpacity>
+
+      <TouchableOpacity>
+        <Text style={styles.registrationBtn}>Регистрация</Text>
+      </TouchableOpacity>
     </View>
   );
 }
@@ -57,7 +61,7 @@ const styles = StyleSheet.create({
     width: "70%",
     height: 45,
     marginBottom: 20,
-    alignItems: "center",
+    alignItems: 'flex-start',
   },
  
   textInput: {
@@ -69,5 +73,12 @@ const styles = StyleSheet.create({
  
   forgotBtn: {
     height: 30,
+  },
+
+  registrationBtn: {
+    height: 50,
+    color: 'blue',
+    textDecorationLine: 'underline',
+    justifyContent: 'flex-end',
   },
 });

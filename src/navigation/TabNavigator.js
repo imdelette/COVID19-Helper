@@ -5,7 +5,6 @@ import Feather from 'react-native-vector-icons/Feather';
 import HomeScreen from '../screens/HomeScreen';
 import AddScreen from '../screens/AddScreen';
 import ChatScreen from '../screens/ChatScreen';
-import { color } from "react-native-reanimated";
 
 const Tab = createBottomTabNavigator();
 
@@ -23,6 +22,7 @@ export default function TabNavigator() {
             name='Home2'
             component={HomeScreen}
             options={{
+                title: 'Главная',
                 tabBarIcon: ({color, size}) => (
                     <Ionicons 
                         name='ios-home-sharp'
@@ -36,6 +36,7 @@ export default function TabNavigator() {
             name='Chat'
             component={ChatScreen}
             options={{
+                title: 'Чат',
                 tabBarIcon: ({color, size}) => (
                     <Ionicons 
                         name='chatbox-sharp'
@@ -49,6 +50,7 @@ export default function TabNavigator() {
             name='Add'
             component={AddScreen}
             options={{
+                title: 'Добавить напоминание',
                 tabBarIcon: ({color, size}) => (
                     <Ionicons 
                         name='md-add-circle'
