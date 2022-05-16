@@ -4,7 +4,6 @@ import {  View, Text, BackHandler, Alert } from 'react-native';
 import { globalStyle } from  '../styles/style';
 
 export default function HomeScreen({ navigation }) {
-    //TODO: настроить BackHandler
     useEffect(() => {
         const backAction = () => {
           Alert.alert("Стоять!", "Вы уверены, что хотите выйти из приложения?", [

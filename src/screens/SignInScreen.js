@@ -1,24 +1,30 @@
 import { StatusBar } from "expo-status-bar";
-import React, { useState } from "react";
+import React, { useState, useEffect, useMemo, useContext } from "react";
 import { StyleSheet, Text, View, Image, TextInput, TouchableOpacity, } from "react-native";
 
 import { globalStyle } from "../styles/style";
- 
-const AuthForm = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-}
 
-export default function Login() {
+import { AuthContext } from "../components/context";
+
+export default function SignInScreen({ navigation }) {
+  const [data, setData] = useState({
+    username: '',
+    password: '',
+    checkTextInputChange: false,
+    secureTextEntry: true,
+  });
+
+  const { signIn } = useContext(AuthContext);
+
   return (
     <View style={styles.container}>
       <StatusBar style="auto" />
       <View style={styles.inputView}>
         <TextInput
           style={styles.textInput}
-          placeholder="Электронная почта"
+          placeholder="Имя пользователя"
           placeholderTextColor="#003f5c"
-          onChangeText={(email) => setEmail(email)}
+          onChangeText={(username) => setData(username)}
         />
       </View>
  
@@ -28,7 +34,7 @@ export default function Login() {
           placeholder="Пароль"
           placeholderTextColor="#003f5c"
           secureTextEntry={true}
-          onChangeText={(password) => setPassword(password)}
+          onChangeText={(password) => setData(password)}
         />
       </View>
  
@@ -36,7 +42,10 @@ export default function Login() {
         <Text style={styles.forgotBtn}>Забыли пароль?</Text>
       </TouchableOpacity>
  
-      <TouchableOpacity style={globalStyle.btn}>
+      <TouchableOpacity 
+      style={globalStyle.btn}
+      onPress={() => {signIn()}}
+      >
         <Text>ВОЙТИ</Text>
       </TouchableOpacity>
 

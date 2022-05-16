@@ -3,7 +3,7 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import Feather from 'react-native-vector-icons/Feather';
 
 import HomeScreen from '../screens/HomeScreen';
-import AddScreen from '../screens/AddScreen';
+import AddReminderScreen from '../screens/AddScreen';
 import ChatScreen from '../screens/ChatScreen';
 
 const Tab = createBottomTabNavigator();
@@ -48,7 +48,7 @@ export default function TabNavigator() {
         />
         <Tab.Screen
             name='Add'
-            component={AddScreen}
+            component={AddReminderScreen}
             options={{
                 title: 'Добавить напоминание',
                 tabBarIcon: ({color, size}) => (
