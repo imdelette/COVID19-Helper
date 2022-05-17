@@ -3,6 +3,7 @@ import { useContext } from 'react';
 import { Button, View } from 'react-native';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import { NavigationContainer } from '@react-navigation/native';
+import Ionicons from 'react-native-vector-icons/Ionicons';
 
 import ProfileScreen from '../screens/ProfileScreen';
 import LoginScreen from '../screens/SignInScreen';
@@ -21,27 +22,66 @@ export default function DrawerNavigator() {
     <NavigationContainer>
       <Drawer.Navigator 
         drawerContent={props => <CustomDrawer {...props} />} 
-        // screenOptions={{headerShown: false}}
+        screenOptions={{
+          headerBackgroundContainerStyle: {
+            backgroundColor: 'skyblue'
+          },
+          headerTintColor: 'steelblue',
+          drawerActiveBackgroundColor: 'skyblue',
+          drawerActiveTintColor: 'steelblue',
+          
+        }}
         >
         <Drawer.Screen
             name='Home'
             component={TabNavigator}
-            options={{title: 'Главная'}}
+            options={{
+              title: 'Главная',
+              drawerIcon: ({color, size}) => (
+                <Ionicons 
+                    name='ios-home-sharp'
+                    color={color}
+                    size={size}
+                    />
+              ),
+            }}
             />
         <Drawer.Screen 
             name='Profile'
             component={ProfileScreen}
-            options={{title: 'Профиль'}}
+            options={{
+              title: 'Профиль',
+              drawerIcon: ({color, size}) => (
+                <Ionicons 
+                    name='ios-person'
+                    color={color}
+                    size={size}
+                    />
+              )
+            }}
           />
         <Drawer.Screen
             name='ExcerciseTypes'
             component={ExcerciseTypesScreen}
-            options={{title: 'Виды упражнений'}}
+            options={{
+              title: 'Виды упражнений',
+              drawerIcon: ({color, size}) => (
+                <Ionicons 
+                    name='heart-circle-outline'
+                    color={color}
+                    size={size}
+                    />
+              )
+            }}
             />
         <Drawer.Screen
             name="Excercise"
             component={ExcerciseScreen}
-            options={{title: 'Упражнение', drawerItemStyle: {display: 'none'}}}
+            options={{
+              title: 'Упражнение', 
+            drawerItemStyle: {display: 'none'},
+            drawerIcon: '',
+            }}
             />
         {/* <Drawer.Screen 
             name='LogOut'

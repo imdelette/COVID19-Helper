@@ -2,9 +2,7 @@ import { useState, useEffect, useMemo, React, } from 'react';
 // import { AppLoading } from 'expo-splash-screen';
 import AppLoading from 'expo-app-loading';
 import { View, ActivityIndicator } from "react-native";
-
 import  * as Font from 'expo-font';
-import { NavigationContainer } from '@react-navigation/native';
 
 import { AuthContext } from './src/components/context';
 import DrawerNavigator from './src/navigation/DrawerNavigator';

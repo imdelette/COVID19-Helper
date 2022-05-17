@@ -12,7 +12,10 @@ export default function HomeScreen({ navigation }) {
               onPress: () => null,
               style: "cancel"
             },
-            { text: "Да", onPress: () => BackHandler.exitApp() }
+            { 
+              text: "Да", 
+              onPress: () => BackHandler.exitApp() 
+            }
           ]);
           return true;
         };

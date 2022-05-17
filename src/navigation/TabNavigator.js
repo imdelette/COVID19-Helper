@@ -1,9 +1,8 @@
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import Feather from 'react-native-vector-icons/Feather';
 
 import HomeScreen from '../screens/HomeScreen';
-import AddReminderScreen from '../screens/AddScreen';
+import AddReminderScreen from '../screens/AddReminderScreen';
 import ChatScreen from '../screens/ChatScreen';
 
 const Tab = createBottomTabNavigator();
@@ -16,7 +15,6 @@ export default function TabNavigator() {
             tabBarStyle: {backgroundColor: 'skyblue'},
             tabBarInactiveTintColor: '#fff',
             tabBarActiveTintColor: 'steelblue',
-            
         }}>
         <Tab.Screen
             name='Home2'
@@ -28,7 +26,7 @@ export default function TabNavigator() {
                         name='ios-home-sharp'
                         color={color}
                         size={size}
-                        />
+                    />
                 )
             }}
         />
@@ -42,7 +40,7 @@ export default function TabNavigator() {
                         name='chatbox-sharp'
                         color={color}
                         size={size}
-                        />
+                    />
                 )
             }}
         />
@@ -56,7 +54,7 @@ export default function TabNavigator() {
                         name='md-add-circle'
                         color={color}
                         size={size}
-                        />
+                    />
                 )
             }}
         />
