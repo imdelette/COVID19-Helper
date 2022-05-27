@@ -10,6 +10,7 @@ import LoginScreen from '../screens/SignInScreen';
 import ExcerciseTypesScreen from '../screens/ExcerciseTypesScreen';
 import ExcerciseScreen from '../screens/ExcerciseScreen';
 import TabNavigator from './TabNavigator';
+import StackNavigator from './StackNavigator';
 import { AuthContext } from '../components/context';
 import CustomDrawer from '../custom/CustomDrawer';
 
@@ -61,8 +62,8 @@ export default function DrawerNavigator() {
             }}
           />
         <Drawer.Screen
-            name='ExcerciseTypes'
-            component={ExcerciseTypesScreen}
+            name='Excercises'
+            component={StackNavigator}
             options={{
               title: 'Виды упражнений',
               drawerIcon: ({color, size}) => (
@@ -72,15 +73,6 @@ export default function DrawerNavigator() {
                     size={size}
                     />
               )
-            }}
-            />
-        <Drawer.Screen
-            name="Excercise"
-            component={ExcerciseScreen}
-            options={{
-              title: 'Упражнение', 
-            drawerItemStyle: {display: 'none'},
-            drawerIcon: '',
             }}
             />
         {/* <Drawer.Screen 

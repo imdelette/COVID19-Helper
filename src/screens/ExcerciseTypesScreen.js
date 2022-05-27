@@ -1,76 +1,40 @@
 import { React, useState } from 'react';
-import { Text, View, SectionList, FlatList, TouchableOpacity, Button, StyleSheet } from 'react-native';
+import { Text, View, ScrollView, SectionList, FlatList, TouchableOpacity, Button, StyleSheet } from 'react-native';
+import StackNavigator from '../navigation/StackNavigator';
 
 import { globalStyle } from  '../styles/style';
 
 export default function ExcerciseTypesScreen({ navigation }) {
 
-    //TODO: перенести в базу данных
-    const [excercises, setExcercises] = useState([
-        {
-            name: 'Купирование отдышки',
-            full: 'Здесь пока ничего нет!',
-        },
-        {
-            name: 'Физические упражнения',
-            full: 'Здесь пока ничего нет!',
-        },
-        {
-            name: 'Восстановление голоса',
-            full: 'Здесь пока ничего нет!',
-        },
-        {
-            name: 'Восстановление функции глотания',
-            full: 'Здесь пока ничего нет!',
-        },
-        {
-            name: 'Восстановление памяти и внимания',
-            full: 'Здесь пока ничего нет!',
-        },
-        {
-            name: 'Преодоление стресса',
-            full: 'Здесь пока ничего нет!',
-        },
-        {
-            name: 'Выполнение повседневных функций',
-            full: 'Здесь пока ничего нет!',
-        },
-    ]) 
-
     return (
-        <View style={globalStyle.main}>
-            <Text style={globalStyle.title}>Здесь могла быть ваша реклама</Text>
-            <View>
-                <FlatList data={excercises} renderItem={({item}) => (
-                    <TouchableOpacity style={styles.btn} onPress={() => navigation.navigate('Excercise', item)}>
-                            <Text style={styles.text}>{item.name}</Text>   
-                    </TouchableOpacity>
-                )}/>
-            </View>
-      </View>
+        <View>
+            <TouchableOpacity style={styles.btn} onPress={() => navigation.navigate('GeneralExcercises')}>
+                <Text>Общие физические упражнения</Text>
+            </TouchableOpacity>
+        </View>
     )
 }
 
 const styles = StyleSheet.create({
-    list: {
+    container: {
         flex: 1,
-        flexWrap: 1,
         flexDirection: 'row',
-        alignItems: 'center',
-        justifyContent: 'center',
-        marginTop: 2,
+        fontSize: 15,
+    },
+    text: {
+        fontSize: 16,
     },
     btn: {
         borderRadius: 25,
-        width: 'auto',
-        height: 60,
-        alignItems: "center",
+        width: 180,
+        paddingTop: 18,
+        paddingBottom: 18,
+        paddingLeft: 10,
+        paddingRight: 10,
+        margin: 10,
+        alignItems: 'center',
+        textAlign: 'center',
         justifyContent: "center",
-        marginTop: 8,
-        marginBottom: 8,
         backgroundColor: "skyblue",
-    },
-    text: {
-        fontSize: 17,
     },
 })

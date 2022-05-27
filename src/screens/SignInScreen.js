@@ -16,15 +16,18 @@ export default function SignInScreen({ navigation }) {
 
   const { signIn } = useContext(AuthContext);
 
+  const loginHandle = (username, password) => {
+    signIn(username, password)
+  }
+
   return (
     <View style={styles.container}>
-      <StatusBar style="auto" />
       <View style={styles.inputView}>
         <TextInput
           style={styles.textInput}
           placeholder="Имя пользователя"
-          placeholderTextColor="#003f5c"
-          onChangeText={(username) => setData(username)}
+          placeholderTextColor="black"
+          onChangeText={(username) => { setData(username) }}
         />
       </View>
  
@@ -32,9 +35,9 @@ export default function SignInScreen({ navigation }) {
         <TextInput
           style={styles.textInput}
           placeholder="Пароль"
-          placeholderTextColor="#003f5c"
+          placeholderTextColor="black"
           secureTextEntry={true}
-          onChangeText={(password) => setData(password)}
+          onChangeText={(password) => { setData(password) }}
         />
       </View>
  
@@ -43,8 +46,8 @@ export default function SignInScreen({ navigation }) {
       </TouchableOpacity>
  
       <TouchableOpacity 
-      style={globalStyle.btn}
-      onPress={() => {signIn()}}
+        style={globalStyle.btn}
+        onPress={() => { loginHandle(data.username, data.password) }}
       >
         <Text>ВОЙТИ</Text>
       </TouchableOpacity>

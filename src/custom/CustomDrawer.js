@@ -5,7 +5,7 @@ import { TouchableOpacity } from 'react-native-gesture-handler';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import { AuthContext } from '../components/context';
 
-export default function CustomDrawer(props) {
+export default function CustomDrawer(props, { navigation }) {
     const { signOut } = useContext(AuthContext);
     
     const SignOutProfile = () => {
@@ -37,14 +37,18 @@ export default function CustomDrawer(props) {
                         source={require('../assets/images/user-icon.png')}
                         style={styles.img}
                         />
-                    <TouchableOpacity style={styles.username}> 
-                        <Text style={{fontSize: 20, color: 'steelblue'}}>Имя профиля</Text>
-                    </TouchableOpacity>
+                    <View style={styles.username}> 
+                        <Text style={{fontSize: 20}}>Имя профиля</Text>
+                    </View>
                 </View>
                 <DrawerItemList {...props}/>
             </DrawerContentScrollView>
             <TouchableOpacity
-                onPress={() => { SignOutProfile() }}
+                onPress={() => { 
+                    // SignOutProfile() 
+                    signOut()
+                
+                }}
             >
                 <View style={styles.footer}>
                     <Ionicons
