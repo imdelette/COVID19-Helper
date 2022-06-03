@@ -1,10 +1,33 @@
 import { React, useState } from 'react';
-import { Text, View, ScrollView, SectionList, FlatList, TouchableOpacity, Button, StyleSheet } from 'react-native';
+import { Text, View, FlatList, TouchableOpacity, StyleSheet } from 'react-native';
 
 export default function GeneralExcercisesScreen({ navigation }) {
+    const screens = [
+        {
+            id: '1',
+            text: 'Разминочные упражнения',
+            nav: 'WarmUpExcercises',
+        },
+        {
+            id: '2',
+            text: 'Оздоровительные физические упражнения',
+            nav: 'WellnessExcercises',
+        },
+        {
+            id: '3',
+            text: 'Укрепляющие (силовые) физические упражнения',
+            nav: 'StrengtheningExcercises',
+        },
+        {
+            id: '4',
+            text: 'Упражнения для охлаждения организма после тренировки',
+            nav: 'CoolingExcercises',
+        },
+    ]
+
     return (
         <View>
-            <View>
+            <View style={styles.container}>
                 <Text style={styles.text}>
                     {
                     '  • Физические упражнения являются важной частью восстановления здоровья после тяжелого заболевания, вызванного COVID-19. Физические упражнения могут помочь вам:\n'+
@@ -19,23 +42,16 @@ export default function GeneralExcercisesScreen({ navigation }) {
                     }
                 </Text>
 
-                <ScrollView style={styles.container} horizontal={true}>
-                        <TouchableOpacity style={styles.btn}>
-                            <Text style={styles.text}>Разминочные упражнения</Text>
+                <FlatList
+                    horizontal={true} 
+                    showsHorizontalScrollIndicator={false}
+                    data={screens}
+                    renderItem={({ item }) => (
+                        <TouchableOpacity style={styles.btn} onPress={() => navigation.navigate(item.nav)}>
+                            <Text style={styles.text}>{item.text}</Text>
                         </TouchableOpacity>
-
-                        <TouchableOpacity style={styles.btn}>
-                            <Text style={styles.text}>Оздоровительные физические упражнения</Text>
-                        </TouchableOpacity>
-
-                        <TouchableOpacity style={styles.btn}>
-                            <Text style={styles.text}>Укрепляющие (силовые) физические упражнения</Text>
-                        </TouchableOpacity>
-                        
-                        <TouchableOpacity style={styles.btn}>
-                            <Text style={styles.text}>Упражнения для охлаждения организма после тренировки</Text>
-                        </TouchableOpacity>
-                </ScrollView>
+                    )}
+                    />
             </View>
         </View>
     )
@@ -43,8 +59,6 @@ export default function GeneralExcercisesScreen({ navigation }) {
 
 const styles = StyleSheet.create({
     container: {
-        flex: 1,
-        flexDirection: 'row',
         fontSize: 15,
     },
     text: {

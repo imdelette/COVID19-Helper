@@ -16,14 +16,6 @@ export default function ExcerciseTypesScreen({ navigation }) {
 }
 
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        flexDirection: 'row',
-        fontSize: 15,
-    },
-    text: {
-        fontSize: 16,
-    },
     btn: {
         borderRadius: 25,
         width: 180,

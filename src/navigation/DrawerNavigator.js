@@ -6,9 +6,6 @@ import { NavigationContainer } from '@react-navigation/native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
 import ProfileScreen from '../screens/ProfileScreen';
-import LoginScreen from '../screens/SignInScreen';
-import ExcerciseTypesScreen from '../screens/ExcerciseTypesScreen';
-import ExcerciseScreen from '../screens/ExcerciseScreen';
 import TabNavigator from './TabNavigator';
 import StackNavigator from './StackNavigator';
 import { AuthContext } from '../components/context';

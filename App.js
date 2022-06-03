@@ -1,12 +1,14 @@
 import { useState, useEffect, useReducer, useMemo, React, } from 'react';
 // import { AppLoading } from 'expo-splash-screen';
 import AppLoading from 'expo-app-loading';
-import { View, ActivityIndicator } from "react-native";
+import { View, ActivityIndicator, BackHandler, } from "react-native";
 import  * as Font from 'expo-font';
+import 'react-native-reanimated';
 
 import { AuthContext } from './src/components/context';
 import DrawerNavigator from './src/navigation/DrawerNavigator';
 import SignInScreen from './src/screens/SignInScreen';
+import ExcercisesCarouselScreen from './src/screens/excercises/ExcercisesCarouselScreen';
 
 const fonts = () => Font.loadAsync({
     'rs-bold': require('./src/assets/fonts/RobotoSlab/RobotoSlab-Bold.ttf'),
@@ -14,6 +16,7 @@ const fonts = () => Font.loadAsync({
 })
 
 export default function App() {
+
   const [font, setFont] = useState(false);
   // const [isLoading, setIsLoading] = useState(true);
   const [userToken, setUserToken] = useState(null);
