@@ -34,7 +34,7 @@ export default function DrawerNavigator() {
             name='Home'
             component={TabNavigator}
             options={{
-              title: 'Главная',
+              title: '',
               drawerIcon: ({color, size}) => (
                 <Ionicons 
                     name='ios-home-sharp'
@@ -44,7 +44,7 @@ export default function DrawerNavigator() {
               ),
             }}
             />
-        <Drawer.Screen 
+        {/* <Drawer.Screen 
             name='Profile'
             component={ProfileScreen}
             options={{
@@ -71,7 +71,7 @@ export default function DrawerNavigator() {
                     />
               )
             }}
-            />
+            /> */}
         {/* <Drawer.Screen 
             name='LogOut'
             onPress={() => { signOut() }}
