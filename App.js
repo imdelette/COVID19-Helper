@@ -1,25 +1,25 @@
-import { useState, useEffect, useReducer, useMemo, React, } from 'react';
-// import { AppLoading } from 'expo-splash-screen';
-import AppLoading from 'expo-app-loading';
-import { View, ActivityIndicator, BackHandler, } from "react-native";
+import { useState, useEffect, useReducer, useCallback, useMemo, React, } from 'react';
+import { View, ActivityIndicator, BackHandler, Text, StyleSheet, useWindowDimensions } from "react-native";
 import  * as Font from 'expo-font';
-import 'react-native-reanimated';
+import * as SplashScreen from 'expo-splash-screen';
+import { LinearGradient } from 'expo-linear-gradient';
+import { getStatusBarHeight } from 'react-native-status-bar-height';
+
 
 import { AuthContext } from './src/components/context';
 import DrawerNavigator from './src/navigation/DrawerNavigator';
 import SignInScreen from './src/screens/SignInScreen';
-import ExcercisesCarouselScreen from './src/screens/excercises/ExcercisesCarouselScreen';
 
-const fonts = () => Font.loadAsync({
-    'rs-bold': require('./src/assets/fonts/RobotoSlab/RobotoSlab-Bold.ttf'),
-    'rs-light': require('./src/assets/fonts/RobotoSlab/RobotoSlab-Light.ttf')
+const fontsLoading = () => Font.loadAsync({
+    'ms-bold': require('./src/assets/fonts/Montserrat/Montserrat-Bold.ttf'),
+    'ms-regular': require('./src/assets/fonts/Montserrat/Montserrat-Regular.ttf')
 })
 
 export default function App() {
+  const { width, height } = useWindowDimensions();
 
-  const [font, setFont] = useState(false);
-  // const [isLoading, setIsLoading] = useState(true);
   const [userToken, setUserToken] = useState(null);
+  const [appIsReady, setAppIsReady] = useState(false);
 
   const initialLoginState = {
     isLoading: true,
@@ -64,7 +64,6 @@ export default function App() {
   const authContext = useMemo(() => ({
     signIn: (username, password) => {
       // setUserToken('asdf');
-      // setIsLoading(false);
       let userToken;
       userToken = null;
       console.log('username: ', username);
@@ -77,7 +76,6 @@ export default function App() {
     },
     signOut: () => {
       // setUserToken(null);
-      // setIsLoading(false);
       dispatch({ type: 'LOGOUT' });
     },
     signUp: () => {
@@ -86,37 +84,62 @@ export default function App() {
     }
   }));
 
-  useEffect(() => {
-    setTimeout(() => {
-      // setIsLoading(false);
-      dispatch({ type: 'RETRIEVE_TOKEN' });
-    }, 1000);
-  }, []);
-  
-  if (loginState.isLoading) {
-    return(
-      <View style={{flex: 1, justifyContent: 'center', alignItems: 'center',}}>
-        <ActivityIndicator size="large"/>
-      </View>
-    )
-  }
+  // useEffect(() => {
+  //   async function prepare() {
+  //     try {
+  //       await fontsLoading;
+  //       await SplashScreen.preventAutoHideAsync();
+  //     } catch (e) {
+  //       console.warn(e);
+  //     } finally {
+  //       setAppIsReady(true);
+  //     }
+  //   }
 
-  if(font) {
-    return (
-      <AuthContext.Provider value={authContext}>
-        { loginState.userToken != null ? (
-          <DrawerNavigator />
-        )
-        :
-          <SignInScreen />
-        }
-      </AuthContext.Provider>
-    );
-  } else {
-    return (
-      <AppLoading startAsync={fonts} 
-        onFinish={() => setFont(true)}
-        onError={console.warn} />
-    );
-  }
+  //   prepare();
+  // }, []);
+
+  // const onLayoutRootView = useCallback(async () => {
+  //   if (appIsReady) {
+  //     await SplashScreen.hideAsync();
+  //   }
+  // }, [appIsReady]);
+
+  // if (!appIsReady) {
+  //   return null;
+  // }
+
+//   <View style={styles.container}>
+//     <LinearGradient
+//       // Background Linear Gradient
+//       colors={['#B2FEFA', '#0ED2F7']}
+//       style={[styles.background, { width, height, marginTop: getStatusBarHeight() },]}
+//     />
+// </View>
+
+  return (
+    <AuthContext.Provider value={authContext}>
+      { loginState.userToken != null ? (
+        <DrawerNavigator />
+      )
+      :
+        <SignInScreen />
+      }
+    </AuthContext.Provider>
+  );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    alignContent: 'center',
+    justifyContent: 'center',
+  },
+  ellipse: {
+
+  },
+  text: {
+    // fontFamily: 'ms-regular',
+    fontSize: 20,
+    textAlign: 'center'
+  }
+})

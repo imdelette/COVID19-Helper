@@ -1,5 +1,6 @@
 import { React } from 'react';
 import { View, Text, StyleSheet, useWindowDimensions, Image } from 'react-native';
+import { ScrollView } from 'react-native-gesture-handler';
 
 export default function OnboardingItem({ item }) {
     const { width } = useWindowDimensions();
@@ -11,8 +12,10 @@ export default function OnboardingItem({ item }) {
                 resizeMode="contain"/>
             
             <View style={styles.textBox}>
-                <Text style={styles.title}>{item.title}</Text>
-                <Text style={styles.description}>{item.description}</Text>
+                <ScrollView>
+                    <Text style={styles.title}>{item.title}</Text>
+                    <Text style={styles.description}>{item.description}</Text>
+                </ScrollView>
             </View>
         </View>
     )
@@ -22,20 +25,20 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         justifyContent: 'center',
-        alignItems: 'center',
+        alignItems: 'center'
     },
 
     image: {
         flex: 0.6,
         justifyContent: 'center',
-        marginBottom: 5,
+        marginBottom: 10,
         width: '100%',
-        height: 'auto'
+        height: 'auto',
     },
 
     title: {
         fontWeight: '800',
-        fontSize: 22,
+        fontSize: 20,
         marginBottom: 10,
         textAlign: 'center',
         color: 'steelblue',
@@ -46,6 +49,7 @@ const styles = StyleSheet.create({
         color: 'steelblue',
         textAlign: 'center',
         paddingHorizontal: 64,
+        textAlign: 'left',
     },
 
     textBox: {

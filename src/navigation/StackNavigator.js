@@ -1,14 +1,19 @@
 import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
 
-import ExcerciseTypesScreen from '../screens/ExcerciseTypesScreen';
-import GeneralExcercisesScreen from '../screens/GeneralExcercisesScreen';
-import WarmUpExcercisesScreen from '../screens/excercises/WarmUpExcercisesScreen';
-import WellnessExcercisesScreen from '../screens/excercises/WellnessExcercisesScreen';
-import StrengtheningExcercisesScreen from '../screens/excercises/StrengtheningExcercisesScreen';
-import CoolingExcercisesScreen from '../screens/excercises/CoolingExcercisesScreen';
-import ExcercisesCarouselScreen from '../screens/excercises/ExcercisesCarouselScreen';
+import ExerciseGroupsScreen from '../screens/ExerciseGroupsScreen';
+import ExercisesCarouselScreen from '../screens/excercises/ExercisesCarouselScreen';
 
+import GeneralExercisesScreen from '../screens/GeneralExercisesScreen';
+import DyspneaExercisesScreen from '../screens/DyspneaExercisesScreen';
+
+import WarmUpExercisesScreen from '../screens/excercises/WarmUpExercisesScreen';
+import WellnessExercisesScreen from '../screens/excercises/WellnessExercisesScreen';
+import StrengtheningExercisesScreen from '../screens/excercises/StrengtheningExercisesScreen';
+import CoolingExercisesScreen from '../screens/excercises/CoolingExercisesScreen';
+import DyspneaReliefExercisesScreen from '../screens/excercises/DyspneaReliefExercisesScreen';
+import ControlBreathingExercisesScreen from '../screens/excercises/ControlBreathingExercisesScreen';
+import DeepBreathingExercisesScreen from '../screens/excercises/DeepBreathingExercisesScreen';
 
 const Stack = createStackNavigator();
 
@@ -17,60 +22,92 @@ export default function StackNavigator() {
         <Stack.Navigator
             >
             <Stack.Screen
-                name='ExcerciseTypes'
+                name='ExerciseGroups'
                 options={{
                     title: '',
                     headerShown: false,
                     }}
-                component={ExcerciseTypesScreen}
+                component={ExerciseGroupsScreen}
             />
             <Stack.Screen 
-                name='GeneralExcercises'
+                name='GeneralExercises'
                 options={{
                   title: '',
                   headerShown: false
                   }}
-                component={GeneralExcercisesScreen}
+                component={GeneralExercisesScreen}
             />
             <Stack.Screen 
-                name='WarmUpExcercises'
+                name='DyspneaExercises'
+                options={{
+                  title: '',
+                  headerShown: false
+                  }}
+                component={DyspneaExercisesScreen}
+            />
+            <Stack.Screen 
+                name='WarmUpExercises'
                 options={{
                     title: '',
                     headerShown: false
                     }}
-                component={WarmUpExcercisesScreen}
+                component={WarmUpExercisesScreen}
             />
             <Stack.Screen 
-                name='WellnessExcercises'
+                name='WellnessExercises'
                 options={{
                     title: '',
                     headerShown: false
                     }}
-                component={WellnessExcercisesScreen}
+                component={WellnessExercisesScreen}
             />
             <Stack.Screen 
-                name='StrengtheningExcercises'
+                name='StrengtheningExercises'
                 options={{
                     title: '',
                     headerShown: false
                     }}
-                component={StrengtheningExcercisesScreen}
+                component={StrengtheningExercisesScreen}
             />
             <Stack.Screen 
-                name='CoolingExcercises'
+                name='CoolingExercises'
                 options={{
                     title: '',
                     headerShown: false
                     }}
-                component={CoolingExcercisesScreen}
+                component={CoolingExercisesScreen}
+            />
+            <Stack.Screen 
+                name='DyspneaReliefExercises'
+                options={{
+                    title: '',
+                    headerShown: false
+                    }}
+                component={DyspneaReliefExercisesScreen}
+            />
+            <Stack.Screen 
+                name='ControlBreathingExercises'
+                options={{
+                    title: '',
+                    headerShown: false
+                    }}
+                component={ControlBreathingExercisesScreen}
+            />
+            <Stack.Screen 
+                name='DeepBreathingExercises'
+                options={{
+                    title: '',
+                    headerShown: false
+                    }}
+                component={DeepBreathingExercisesScreen}
             />
             <Stack.Screen
-                name="ExcercisesCarousel"
+                name="ExercisesCarousel"
                 options={{
                     title: '',
                     headerShown: false
                     }}
-                component={ExcercisesCarouselScreen}
+                component={ExercisesCarouselScreen}
             />
         </Stack.Navigator>
     )
