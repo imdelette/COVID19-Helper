@@ -27,7 +27,7 @@ export default function SignInScreen({ navigation }) {
           style={styles.textInput}
           placeholder="Имя пользователя"
           placeholderTextColor="black"
-          onChangeText={(username) => { setData(username) }}
+          onChangeText={(username) => { data.username = username }}
         />
       </View>
  
@@ -37,13 +37,9 @@ export default function SignInScreen({ navigation }) {
           placeholder="Пароль"
           placeholderTextColor="black"
           secureTextEntry={true}
-          onChangeText={(password) => { setData(password) }}
+          onChangeText={(password) => { data.password = password }}
         />
       </View>
- 
-      <TouchableOpacity>
-        <Text style={styles.forgotBtn}>Забыли пароль?</Text>
-      </TouchableOpacity>
  
       <TouchableOpacity 
         style={globalStyle.btn}
@@ -53,7 +49,7 @@ export default function SignInScreen({ navigation }) {
       </TouchableOpacity>
 
       <TouchableOpacity>
-        <Text style={styles.registrationBtn}>Регистрация</Text>
+        <Text style={styles.forgotBtn}>Забыли пароль?</Text>
       </TouchableOpacity>
     </View>
   );

@@ -4,7 +4,7 @@
 // [3]: cooling
 // [4]: dyspnea
 
-export default exercises = [
+export default [
     [
         {
             id: '1',

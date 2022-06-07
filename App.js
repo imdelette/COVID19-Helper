@@ -1,21 +1,22 @@
 import { useState, useEffect, useReducer, useCallback, useMemo, React, } from 'react';
-import { View, ActivityIndicator, BackHandler, Text, StyleSheet, useWindowDimensions } from "react-native";
-import  * as Font from 'expo-font';
-import * as SplashScreen from 'expo-splash-screen';
-import { LinearGradient } from 'expo-linear-gradient';
-import { getStatusBarHeight } from 'react-native-status-bar-height';
+import { View, ActivityIndicator, BackHandler, Text, StyleSheet, useWindowDimensions, AppLoading } from "react-native";
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import useFonts from './src/hooks/useFonts';
 
+import * as SplashScreen from 'expo-splash-screen';
 
 import { AuthContext } from './src/components/context';
 import DrawerNavigator from './src/navigation/DrawerNavigator';
-import SignInScreen from './src/screens/SignInScreen';
-
-const fontsLoading = () => Font.loadAsync({
-    'ms-bold': require('./src/assets/fonts/Montserrat/Montserrat-Bold.ttf'),
-    'ms-regular': require('./src/assets/fonts/Montserrat/Montserrat-Regular.ttf')
-})
+import WelcomeStackNavigator from './src/navigation/WelcomeStackNavigator';
 
 export default function App() {
+
+  // const [IsReady, SetIsReady] = useState(false);
+
+  // const LoadFonts = async () => {
+  //   await useFonts();
+  // };
+
   const { width, height } = useWindowDimensions();
 
   const [userToken, setUserToken] = useState(null);
@@ -58,24 +59,31 @@ export default function App() {
         };
     }
   };
-
   const [loginState, dispatch] = useReducer(loginReducer, initialLoginState);
 
   const authContext = useMemo(() => ({
-    signIn: (username, password) => {
-      // setUserToken('asdf');
+    signIn: async(username, password) => {
       let userToken;
       userToken = null;
       console.log('username: ', username);
       console.log('password: ', password);
-      // if(username == 'user' && password == 'password') {
-      //   userToken = 'qwer';
-      // }
-      userToken = 'qwer';
+      if(username == 'U' && password == 'P') {
+        try {
+          userToken = 'qwer';
+          await AsyncStorage.setItem('userToken', userToken)
+        } catch(e) {
+          console.log(e);
+        }
+      }
+      console.log('token: ', userToken);
       dispatch({ type: 'LOGIN', id: username, token: userToken });
     },
-    signOut: () => {
-      // setUserToken(null);
+    signOut: async() => {
+      try {
+        await AsyncStorage.removeItem('userToken');
+      } catch(e) {
+        console.log(e);
+      }
       dispatch({ type: 'LOGOUT' });
     },
     signUp: () => {
@@ -83,6 +91,22 @@ export default function App() {
       setIsLoading(false);
     }
   }));
+
+  useEffect(() => {
+    setTimeout(async() => {
+      let userToken;
+      userToken = null;
+      try {
+        userToken = await AsyncStorage.getItem('userToken');
+      } catch(e) {
+        console.log(e);
+      }
+      console.log('token after reopen app: ', userToken);
+      dispatch({ type: 'REGISTER', token: userToken });
+    }, 1000);
+  }, []);
+
+  
 
   // useEffect(() => {
   //   async function prepare() {
@@ -117,16 +141,26 @@ export default function App() {
 //     />
 // </View>
 
-  return (
-    <AuthContext.Provider value={authContext}>
+  // if(IsReady) {
+    return(
+      <AuthContext.Provider value={authContext}>
       { loginState.userToken != null ? (
         <DrawerNavigator />
       )
       :
-        <SignInScreen />
+        <WelcomeStackNavigator />
       }
-    </AuthContext.Provider>
-  );
+      </AuthContext.Provider>
+    );
+  // } else {
+  //   return (
+  //     <AppLoading
+  //       startAsync={LoadFonts}
+  //       onFinish={() => SetIsReady(true)}
+  //       onError={() => {}}
+  //     />
+  //   );
+  // }
 }
 
 const styles = StyleSheet.create({

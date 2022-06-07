@@ -5,10 +5,8 @@ import Feather from 'react-native-vector-icons/Feather';
 
 
 import HomeScreen from '../screens/HomeScreen';
-import AddReminderScreen from '../screens/AddReminderScreen';
 import ChatScreen from '../screens/ChatScreen';
 import CalendarScreen from "../screens/CalendarScreen";
-import ExcerciseGroupsScreen from "../screens/ExerciseGroupsScreen";
 import ProfileScreen from "../screens/ProfileScreen";
 
 import StackNavigator from "./StackNavigator";
@@ -72,7 +70,7 @@ export default function TabNavigator() {
             name='ExcerciseGroups'
             component={StackNavigator}
             options={{
-                title: 'Календарь',
+                title: 'Упражнения',
                 tabBarIcon: ({color, size}) => (
                     <MaterialCommunityIcons 
                         name='run'
@@ -86,7 +84,7 @@ export default function TabNavigator() {
             name='Profile'
             component={ProfileScreen}
             options={{
-                title: 'Календарь',
+                title: 'Профиль',
                 tabBarIcon: ({color, size}) => (
                     <Feather 
                         name='user'

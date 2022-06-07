@@ -40,6 +40,6 @@ export default function HomeScreen({ navigation }) {
 const styles = StyleSheet.create({
   header: {
     fontSize: 16,
-    fontWeight: 600
+    fontWeight: 600,
   }
 })
