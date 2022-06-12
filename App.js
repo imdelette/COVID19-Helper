@@ -8,7 +8,7 @@ import * as SplashScreen from 'expo-splash-screen';
 import { AuthContext } from './src/components/context';
 import DrawerNavigator from './src/navigation/DrawerNavigator';
 import WelcomeStackNavigator from './src/navigation/WelcomeStackNavigator';
-import Authentication from './src/components/Authentication';
+import TabNavigator from './src/navigation/TabNavigator';
 
 export default function App() {
 
@@ -68,7 +68,7 @@ export default function App() {
       userToken = null;
       console.log('username: ', username);
       console.log('password: ', password);
-      if(username == 'U' && password == 'P') {
+      if(username == '' && password == '') {
         try {
           userToken = 'qwer';
           await AsyncStorage.setItem('userToken', userToken)

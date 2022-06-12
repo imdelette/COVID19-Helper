@@ -1,19 +1,24 @@
 import * as React from 'react';
 import { useContext } from 'react';
-import { Button, View } from 'react-native';
-import { createDrawerNavigator } from '@react-navigation/drawer';
+import { Button, useWindowDimensions, View } from 'react-native';
+import { createDrawerNavigator, IconComponent } from '@react-navigation/drawer';
 import { NavigationContainer } from '@react-navigation/native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import Octicons from 'react-native-vector-icons/Octicons';
 
 import ProfileScreen from '../screens/ProfileScreen';
 import TabNavigator from './TabNavigator';
 import StackNavigator from './StackNavigator';
 import { AuthContext } from '../components/context';
 import CustomDrawer from '../custom/CustomDrawer';
+import CalendarScreen from '../screens/CalendarScreen';
 
 const Drawer = createDrawerNavigator();
 
-export default function DrawerNavigator() {
+
+export default function DrawerNavigator({ navigation }) {
+  const { height, width } = useWindowDimensions()
   const { signOut } = useContext(AuthContext);
 
   return (
@@ -21,29 +26,73 @@ export default function DrawerNavigator() {
       <Drawer.Navigator 
         drawerContent={props => <CustomDrawer {...props} />} 
         screenOptions={{
-          headerBackgroundContainerStyle: {
-            backgroundColor: 'skyblue'
-          },
-          headerTintColor: 'steelblue',
-          drawerActiveBackgroundColor: 'skyblue',
-          drawerActiveTintColor: 'steelblue',
-          
+          //это нам не надо
+          drawerActiveBackgroundColor: 'steelblue',
+          //^^^^^
+          drawerActiveTintColor: 'white',
+          drawerInactiveTintColor: 'white',
+          swipeEdgeWidth: width / 4,
+          drawerStyle: { width: width * 4 / 6, fontSize: 25 }, 
         }}
         >
         <Drawer.Screen
-            name='Home'
-            component={TabNavigator}
-            options={{
-              title: '',
-              drawerIcon: ({color, size}) => (
-                <Ionicons 
-                    name='ios-home-sharp'
-                    color={color}
-                    size={size}
-                    />
-              ),
-            }}
-            />
+          name='Calendar'
+          component={CalendarScreen}
+          options={{
+            title: 'Мой календарь',
+            drawerIcon: ({color, size}) => (
+              <Ionicons 
+                  name='calendar-outline'
+                  color={color}
+                  size={size}
+                  />
+            ),
+          }}
+        />
+        <Drawer.Screen 
+          name='Dummy1'
+          component={ProfileScreen}
+          options={{
+            title: 'Упражнения',
+            drawerIcon: ({color, size}) => (
+              <MaterialCommunityIcons 
+                  name='run'
+                  color={color}
+                  size={size}
+                  />
+            ),
+          }}
+        />
+        <Drawer.Screen 
+          name='Dummy2'
+          component={ProfileScreen}
+          options={{
+            title: 'Новости',
+            drawerIcon: ({color, size}) => (
+              <Ionicons 
+                  name='ios-globe-outline'
+                  color={color}
+                  size={size}
+                  />
+            ),
+          }}
+          
+        />
+        <Drawer.Screen 
+          name='Dummy3'
+          component={ProfileScreen}
+          options={{
+            title: 'Настройки',
+            
+            drawerIcon: ({color, size}) => (
+              <Octicons 
+                  name='gear'
+                  color={color}
+                  size={size}
+                  />
+            ),
+          }}
+        />
         {/* <Drawer.Screen 
             name='Profile'
             component={ProfileScreen}

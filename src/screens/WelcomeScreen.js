@@ -57,7 +57,7 @@ export default function WelcomeScreen({ navigation }) {
     return (
         <View style={[styles.container, { marginTop: getStatusBarHeight() }]}>
 
-          {/* <LinearGradient colors={['#B2FEFA','#0ED2F7']} style={{ width: '100%', height: '100%', }}> */}
+          <LinearGradient colors={['#B2FEFA','#0ED2F7']} style={{ width: '100%', height: '100%', }}>
             <View style={{ justifyContent: 'center' }}>
               <Image style={styles.logo} source={require('../assets/images/logo2.png')} />
             </View>
@@ -73,6 +73,7 @@ export default function WelcomeScreen({ navigation }) {
                             </ScrollView>
                         </View>
 
+                        {/* оно не выходит за границы карусели */}
                         {/* <Image source={item.image}
                             style={styles.waves}
                             resizeMode="contain"
@@ -111,7 +112,7 @@ export default function WelcomeScreen({ navigation }) {
               </TouchableOpacity>
             </View>
 
-          {/* </LinearGradient> */}
+          </LinearGradient>
       </View>
     )
 };
@@ -123,7 +124,7 @@ const styles = StyleSheet.create({
     title: {
       width: 235,
       left: 40,
-      fontWeight: '700',
+      fontWeight: 'bold',
       fontSize: 14,
     },
     waves: {
