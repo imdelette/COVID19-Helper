@@ -8,6 +8,7 @@ import * as SplashScreen from 'expo-splash-screen';
 import { AuthContext } from './src/components/context';
 import DrawerNavigator from './src/navigation/DrawerNavigator';
 import WelcomeStackNavigator from './src/navigation/WelcomeStackNavigator';
+import Authentication from './src/components/Authentication';
 
 export default function App() {
 
@@ -143,6 +144,7 @@ export default function App() {
 
   // if(IsReady) {
     return(
+      // <Authentication />
       <AuthContext.Provider value={authContext}>
       { loginState.userToken != null ? (
         <DrawerNavigator />
