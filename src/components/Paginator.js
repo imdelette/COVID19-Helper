@@ -26,7 +26,7 @@ const styles = StyleSheet.create({
     dot: {
         height: 10,
         borderRadius: 5,
-        backgroundColor: 'darkblue',
+        backgroundColor: 'white',
         marginHorizontal: 8
     }
 })

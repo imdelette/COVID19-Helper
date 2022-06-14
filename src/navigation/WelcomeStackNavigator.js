@@ -1,25 +1,26 @@
 import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
+import auth from '@react-native-firebase/auth';
 
 import WelcomeScreen from '../screens/WelcomeScreen';
 import SignInScreen from '../screens/SignInScreen';
 import RegistrationScreen from '../screens/RegistrationScreen';
-import { NavigationContainer } from '@react-navigation/native';
+import TabNavigator from './TabNavigator';
+import DrawerNavigator from './DrawerNavigator';
 
 const Stack = createStackNavigator();
 
-export default function StackNavigator() {
+export default function WelcomeStackNavigator() {
+
     return(
-        <NavigationContainer>
-            <Stack.Navigator
-            >
+        <Stack.Navigator initialRouteName='Welcome'>
             <Stack.Screen
-                name='Welcome'
-                options={{
-                    title: '',
-                    headerShown: false,
-                    }}
-                component={WelcomeScreen}
+            name='Welcome'
+            options={{
+                title: '',
+                headerShown: false,
+                }}
+            component={WelcomeScreen}
             />
             <Stack.Screen
                 name='SignIn'
@@ -37,7 +38,15 @@ export default function StackNavigator() {
                     }}
                 component={RegistrationScreen}
             />
-        </Stack.Navigator>
-        </NavigationContainer>
+
+            <Stack.Screen
+                name='Drawer'
+                options={{
+                    title: '',
+                    headerShown: false,
+                    }}
+                component={DrawerNavigator}
+            />
+    </Stack.Navigator>
     )
 }

@@ -8,22 +8,22 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 import Octicons from 'react-native-vector-icons/Octicons';
 
 import ProfileScreen from '../screens/ProfileScreen';
-import TabNavigator from './TabNavigator';
-import StackNavigator from './StackNavigator';
-import { AuthContext } from '../components/context';
 import CustomDrawer from '../custom/CustomDrawer';
 import CalendarScreen from '../screens/CalendarScreen';
+import HomeScreen from '../screens/HomeScreen';
+import TabNavigator from './TabNavigator';
+import WelcomeStackNavigator from './WelcomeStackNavigator';
+import SignInScreen from '../screens/SignInScreen';
 
 const Drawer = createDrawerNavigator();
 
 
 export default function DrawerNavigator({ navigation }) {
-  const { height, width } = useWindowDimensions()
-  const { signOut } = useContext(AuthContext);
+  const { height, width } = useWindowDimensions();
 
   return (
-    <NavigationContainer>
-      <Drawer.Navigator 
+      <Drawer.Navigator
+        initialRouteName='DrawerHome' 
         drawerContent={props => <CustomDrawer {...props} />} 
         screenOptions={{
           //это нам не надо
@@ -35,6 +35,14 @@ export default function DrawerNavigator({ navigation }) {
           drawerStyle: { width: width * 4 / 6, fontSize: 25 }, 
         }}
         >
+      <Drawer.Screen 
+        name='DrawerHome'
+        options={{
+          title: 'Добрый день!',
+          drawerItemStyle: { display: 'none' }
+        }}
+        component={TabNavigator}
+      />
         <Drawer.Screen
           name='Calendar'
           component={CalendarScreen}
@@ -93,40 +101,6 @@ export default function DrawerNavigator({ navigation }) {
             ),
           }}
         />
-        {/* <Drawer.Screen 
-            name='Profile'
-            component={ProfileScreen}
-            options={{
-              title: 'Профиль',
-              drawerIcon: ({color, size}) => (
-                <Ionicons 
-                    name='ios-person'
-                    color={color}
-                    size={size}
-                    />
-              )
-            }}
-          />
-        <Drawer.Screen
-            name='Excercises'
-            component={StackNavigator}
-            options={{
-              title: 'Виды упражнений',
-              drawerIcon: ({color, size}) => (
-                <Ionicons 
-                    name='heart-circle-outline'
-                    color={color}
-                    size={size}
-                    />
-              )
-            }}
-            /> */}
-        {/* <Drawer.Screen 
-            name='LogOut'
-            onPress={() => { signOut() }}
-            options={{title: 'Выйти из профиля'}}
-            /> */}
       </Drawer.Navigator>
-    </NavigationContainer>
   );
 }

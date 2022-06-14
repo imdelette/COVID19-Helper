@@ -55,11 +55,11 @@ export default function WelcomeScreen({ navigation }) {
     const viewConfig =useRef({ viewAreaCoveragePercentThreshold: 50 }).current;
 
     return (
-        <View style={[styles.container, { marginTop: getStatusBarHeight() }]}>
+        <View style={ styles.container }>
 
           <LinearGradient colors={['#B2FEFA','#0ED2F7']} style={{ width: '100%', height: '100%', }}>
-            <View style={{ justifyContent: 'center' }}>
-              <Image style={styles.logo} source={require('../assets/images/logo2.png')} />
+            <View  style={styles.logo}>
+              <Image source={require('../assets/images/logo2.png')} />
             </View>
 
             <View style={{ flex: 0.9 }}>
@@ -99,8 +99,8 @@ export default function WelcomeScreen({ navigation }) {
             </View>
 
             <View style={styles.btnsBox}>
-              <LinearGradient start={{x: 0, y: 0}} end={{x: 1, y: 0}} style={styles.signInBtn} colors={['#FF512F', '#F09819']}>
-                <TouchableOpacity onPress={() => { navigation.navigate('SignIn') }}>
+              <LinearGradient style={{ borderRadius: 25, }} start={{x: 0, y: 0}} end={{x: 1, y: 0}} colors={['#FF512F', '#F09819']}>
+                <TouchableOpacity style={styles.signInBtn} onPress={() => { navigation.navigate('SignIn') }}>
                   <Text style={styles.btnText}>Войти</Text>
                 </TouchableOpacity>
               </LinearGradient>
@@ -135,7 +135,8 @@ const styles = StyleSheet.create({
     logo: {
       flex: 0.2,
       justifyContent: 'center',
-      marginBottom: 10,
+      marginTop: 15,
+      marginBottom: 15,
       width: '100%',
       height: 'auto',
     },
@@ -151,7 +152,6 @@ const styles = StyleSheet.create({
     signInBtn: {
       width: 272,
       height: 46,
-      borderRadius: 25,
       alignItems: 'center',
     },
     signUpBtn: {

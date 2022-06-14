@@ -17,91 +17,88 @@ const Tab = createBottomTabNavigator();
 
 export default function TabNavigator() {
     return (
-        <NavigationContainer>
-                <Tab.Navigator 
-                    screenOptions={{
-                        headerShown: false,
-                        tabBarShowLabel: false,
-                        tabBarStyle: { backgroundColor: 'white' },
-                        tabBarInactiveTintColor: 'steelblue',
-                        tabBarActiveTintColor: 'orange',
-                        
-                }}>
-                <Tab.Screen
-                    name='Chat'
-                    component={ChatScreen}
-                    options={{
-                        title: 'Чат',
-                        tabBarIcon: ({color, size}) => (
-                            <Ionicons 
-                                name='chatbox-sharp'
-                                color={color}
-                                size={size}
-                            />
-                        )
-                    }}
-                />
-                <Tab.Screen
-                    name='Calendar'
-                    component={CalendarScreen}
-                    options={{
-                        title: 'Календарь',
-                        tabBarIcon: ({color, size}) => (
-                            <Ionicons 
-                                name='calendar-outline'
-                                color={color}
-                                size={size}
-                            />
-                        )
-                    }}
-                />
-                <Tab.Screen
-                    name='Home2'
-                    component={HomeScreen}
-                    options={{
-                        title: 'Главная',
-                        tabBarIcon: ({color, size}) => (
-                            <Ionicons 
-                                name='ios-home-sharp'
-                                color={color}
-                                size={size}
-                            />
-                        )
-                    }}
-                    
-                />
+            <Tab.Navigator 
+                screenOptions={{
+                    headerShown: false,
+                    tabBarShowLabel: false,
+                    tabBarStyle: { backgroundColor: 'white' },
+                    tabBarInactiveTintColor: 'steelblue',
+                    tabBarActiveTintColor: 'orange',
+                }}
+                initialRouteName='Home'
+            >
+            <Tab.Screen
+                name='Chat'
+                component={ChatScreen}
+                options={{
+                    title: 'Чат',
+                    tabBarIcon: ({color, size}) => (
+                        <Ionicons 
+                            name='chatbox-sharp'
+                            color={color}
+                            size={size}
+                        />
+                    )
+                }}
+            />
+            <Tab.Screen
+                name='Calendar'
+                component={CalendarScreen}
+                options={{
+                    title: 'Календарь',
+                    tabBarIcon: ({color, size}) => (
+                        <Ionicons 
+                            name='calendar-outline'
+                            color={color}
+                            size={size}
+                        />
+                    )
+                }}
+            />
+            <Tab.Screen
+                name='Home'
+                component={HomeScreen}
+                options={{
+                    title: 'Главная',
+                    tabBarIcon: ({color, size}) => (
+                        <Ionicons 
+                            name='ios-home-sharp'
+                            color={color}
+                            size={size}
+                        />
+                    )
+                }}
+                
+            />
 
-                <Tab.Screen
-                    name='ExcerciseGroups'
-                    component={StackNavigator}
-                    options={{
-                        title: 'Упражнения',
-                        tabBarIcon: ({color, size}) => (
-                            <MaterialCommunityIcons 
-                                name='run'
-                                color={color}
-                                size={size}
-                            />
-                        )
-                    }}
-                />
-                        <Tab.Screen
-                    name='Profile'
-                    component={ProfileScreen}
-                    options={{
-                        title: 'Профиль',
-                        tabBarIcon: ({color, size}) => (
-                            <Feather 
-                                name='user'
-                                color={color}
-                                size={size}
-                            />
-                        )
-                    }}
-                />
-            </Tab.Navigator>
-
-            <DrawerNavigator />
-        </NavigationContainer>
+            <Tab.Screen
+                name='ExcerciseGroups'
+                component={StackNavigator}
+                options={{
+                    title: 'Упражнения',
+                    tabBarIcon: ({color, size}) => (
+                        <MaterialCommunityIcons 
+                            name='run'
+                            color={color}
+                            size={size}
+                        />
+                    )
+                }}
+            />
+                    <Tab.Screen
+                name='Profile'
+                component={ProfileScreen}
+                options={{
+                    title: 'Профиль',
+                    tabBarIcon: ({color, size}) => (
+                        <Feather 
+                            name='user'
+                            color={color}
+                            size={size}
+                        />
+                    )
+                }}
+            />
+        </Tab.Navigator>
     )
 }

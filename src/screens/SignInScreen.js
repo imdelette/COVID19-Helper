@@ -1,24 +1,37 @@
 import { StatusBar } from "expo-status-bar";
 import React, { useState, useEffect, useMemo, useContext } from "react";
 import { StyleSheet, Text, View, Image, TextInput, TouchableOpacity, } from "react-native";
+import auth from '@react-native-firebase/auth';
+import TabNavigator from "../navigation/TabNavigator";
 
 import { globalStyle } from "../styles/style";
 
-import { AuthContext } from "../components/context";
-
 export default function SignInScreen({ navigation }) {
+
   const [data, setData] = useState({
-    username: '',
+    email: '',
     password: '',
     checkTextInputChange: false,
     secureTextEntry: true,
   });
 
-  const { signIn } = useContext(AuthContext);
-
-  const loginHandle = (username, password) => {
-    signIn(username, password)
+  const handleLogin = async() => {
+    await auth()
+      .signInWithEmailAndPassword(data.email, data.password)
+      .then(userCredential => {
+        const user = userCredential.user;
+        console.log(`Logged in with ${user.email}\n${auth().currentUser}`)
+      })
+      .catch(error => alert(error.message));
   }
+
+  useEffect(() => {
+    auth().onAuthStateChanged(user => {
+      if (user) {
+        navigation.replace('Drawer');
+      }
+    })
+  }, [])
 
   return (
     <View style={styles.container}>
@@ -27,7 +40,7 @@ export default function SignInScreen({ navigation }) {
           style={styles.textInput}
           placeholder="Имя пользователя"
           placeholderTextColor="black"
-          onChangeText={(username) => { data.username = username }}
+          onChangeText={(email) => { data.email = email }}
         />
       </View>
  
@@ -43,7 +56,7 @@ export default function SignInScreen({ navigation }) {
  
       <TouchableOpacity 
         style={globalStyle.btn}
-        onPress={() => { loginHandle(data.username, data.password) }}
+        onPress={ handleLogin }
       >
         <Text>ВОЙТИ</Text>
       </TouchableOpacity>

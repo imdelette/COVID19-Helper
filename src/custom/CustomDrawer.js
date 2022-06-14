@@ -1,17 +1,34 @@
 import { React, useContext } from 'react';
-import { View, Text, ImageBackground, Image, StyleSheet, Alert, useWindowDimensions } from 'react-native';
+import { View, Text, ImageBackground, Image, StyleSheet, Alert, useWindowDimensions, useEffect } from 'react-native';
 import { DrawerContentScrollView, DrawerItemList } from '@react-navigation/drawer';
+import { useNavigation } from '@react-navigation/native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
+import auth from '@react-native-firebase/auth';
 
-import { AuthContext } from '../components/context';
 import { LinearGradient } from 'expo-linear-gradient';
 import { getStatusBarHeight } from 'react-native-status-bar-height';
+import WelcomeStackNavigator from '../navigation/WelcomeStackNavigator';
 
-export default function CustomDrawer(props, { navigation }) {
-    const { signOut } = useContext(AuthContext);
+export default function CustomDrawer(props) {
+
     const { height, width } = useWindowDimensions();
+
+    const handleSignOut = async() => {
+        await auth()
+            .signOut()
+            .then(() => {
+                console.log('User is logged-out\n');
+                props.navigation.reset({
+                    index: 0,
+                    routes: [
+                      { name: 'Welcome' }
+                    ],
+                });
+            })
+            .error(error => alert(error.message));
+    }
     
     const SignOutProfile = () => {
         Alert.alert("Стоять!", "Вы уверены, что хотите выйти из профиля?", [
@@ -22,7 +39,7 @@ export default function CustomDrawer(props, { navigation }) {
             },
             { 
                 text: "Да", 
-                onPress: () => signOut() 
+                onPress: handleSignOut
             }
           ]);
           return true;
@@ -35,9 +52,9 @@ export default function CustomDrawer(props, { navigation }) {
                 colors={['#B2FEFA', '#0ED2F7']}
                 style={{ width: width * 4 / 6, height: height}}
             >
-                <View style={styles.logoContainer}>
+                <TouchableOpacity style={styles.logoContainer} onPress={() => props.navigation.navigate('DrawerHome')}>
                     <Image style={styles.img} source={require('../assets/images/logo2.png')} />
-                </View>
+                </TouchableOpacity>
 
                 <View style={styles.user}>
                     <Image style={styles.userIcon} source={require('../assets/images/user-icon.png')}/>
@@ -50,11 +67,7 @@ export default function CustomDrawer(props, { navigation }) {
                 </DrawerContentScrollView>
 
                 <TouchableOpacity
-                    onPress={() => { 
-                        // SignOutProfile() 
-                        signOut()
-                    
-                    }}
+                    onPress={() =>  SignOutProfile() }
                 >
                     <View style={styles.footer}>
                         <Ionicons
@@ -62,7 +75,7 @@ export default function CustomDrawer(props, { navigation }) {
                             size={25}
                             color='white'
                         />
-                        <Text style={{ color: 'white', fontSize: 18 }}>Выйти</Text>
+                        <Text style={{ color: 'white', fontSize: 18 }}>Выход</Text>
                     </View>
                 </TouchableOpacity>
             </LinearGradient>

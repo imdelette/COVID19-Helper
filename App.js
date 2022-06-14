@@ -1,18 +1,15 @@
 import { useState, useEffect, useReducer, useCallback, useMemo, React, } from 'react';
 import { View, ActivityIndicator, BackHandler, Text, StyleSheet, useWindowDimensions, AppLoading } from "react-native";
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import getAuth from '@react-native-firebase/auth';
 import useFonts from './src/hooks/useFonts';
 
 import * as SplashScreen from 'expo-splash-screen';
 
-import { AuthContext } from './src/components/context';
-import DrawerNavigator from './src/navigation/DrawerNavigator';
+import { NavigationContainer } from '@react-navigation/native';
 import WelcomeStackNavigator from './src/navigation/WelcomeStackNavigator';
-import TabNavigator from './src/navigation/TabNavigator';
+import DrawerNavigator from './src/navigation/DrawerNavigator';
 
 export default function App() {
-
-  // const [IsReady, SetIsReady] = useState(false);
 
   // const LoadFonts = async () => {
   //   await useFonts();
@@ -20,94 +17,8 @@ export default function App() {
 
   const { width, height } = useWindowDimensions();
 
-  const [userToken, setUserToken] = useState(null);
-  const [appIsReady, setAppIsReady] = useState(false);
+  // const
 
-  const initialLoginState = {
-    isLoading: true,
-    username: null,
-    userToken: null,
-  };
-
-  const loginReducer = (previousState, action) => {
-    switch(action.type) {
-      case 'RETRIEVE_TOKEN':
-        return {
-          ...previousState,
-          userToken: action.token,
-          isLoading: false,
-        };
-      case 'LOGIN':
-        return {
-          ...previousState,
-          username: action.id,
-          userToken: action.token,
-          isLoading: false,
-        };
-      case 'LOGOUT':
-        return {
-          ...previousState,
-          username: null,
-          userToken: null,
-          isLoading: false,
-        };
-      case 'REGISTER':
-        return {
-          ...previousState,
-          username: action.id,
-          userToken: action.token,
-          isLoading: false,
-        };
-    }
-  };
-  const [loginState, dispatch] = useReducer(loginReducer, initialLoginState);
-
-  const authContext = useMemo(() => ({
-    signIn: async(username, password) => {
-      let userToken;
-      userToken = null;
-      console.log('username: ', username);
-      console.log('password: ', password);
-      if(username == '' && password == '') {
-        try {
-          userToken = 'qwer';
-          await AsyncStorage.setItem('userToken', userToken)
-        } catch(e) {
-          console.log(e);
-        }
-      }
-      console.log('token: ', userToken);
-      dispatch({ type: 'LOGIN', id: username, token: userToken });
-    },
-    signOut: async() => {
-      try {
-        await AsyncStorage.removeItem('userToken');
-      } catch(e) {
-        console.log(e);
-      }
-      dispatch({ type: 'LOGOUT' });
-    },
-    signUp: () => {
-      setUserToken('asdf');
-      setIsLoading(false);
-    }
-  }));
-
-  useEffect(() => {
-    setTimeout(async() => {
-      let userToken;
-      userToken = null;
-      try {
-        userToken = await AsyncStorage.getItem('userToken');
-      } catch(e) {
-        console.log(e);
-      }
-      console.log('token after reopen app: ', userToken);
-      dispatch({ type: 'REGISTER', token: userToken });
-    }, 1000);
-  }, []);
-
-  
 
   // useEffect(() => {
   //   async function prepare() {
@@ -142,27 +53,39 @@ export default function App() {
 //     />
 // </View>
 
-  // if(IsReady) {
-    return(
-      // <Authentication />
-      <AuthContext.Provider value={authContext}>
-      { loginState.userToken != null ? (
-        <DrawerNavigator />
+  const isLoggedIn = async() => {
+    try {
+      await new Promise((resolve, reject) =>
+        auth()
+          .onAuthStateChanged(user => {
+              if (user) {
+                // User is signed in.
+                resolve(user)
+              } else {
+                // No user is signed in.
+                reject('no user logged in')
+              }
+            },
+          // Prevent console error
+          error => reject(error)
+        )
       )
-      :
-        <WelcomeStackNavigator />
-      }
-      </AuthContext.Provider>
-    );
-  // } else {
-  //   return (
-  //     <AppLoading
-  //       startAsync={LoadFonts}
-  //       onFinish={() => SetIsReady(true)}
-  //       onError={() => {}}
-  //     />
-  //   );
-  // }
+      return true
+    } catch (error) {
+      return false
+    }
+  }
+
+  return(
+    <NavigationContainer>
+      { (!isLoggedIn) ? (
+          <DrawerNavigator />
+        ) : (
+          <WelcomeStackNavigator />
+        )
+    }
+    </NavigationContainer>
+  )
 }
 
 const styles = StyleSheet.create({
