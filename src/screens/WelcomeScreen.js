@@ -104,11 +104,9 @@ export default function WelcomeScreen({ navigation }) {
                   <Text style={styles.btnText}>Войти</Text>
                 </TouchableOpacity>
               </LinearGradient>
-
-              <Text style={{ color: 'white' }}>или</Text>
-
+              <Text style={{ fontSize: 15, color: '#FFFFFF', width: '100%', textAlign: 'center' }}>или</Text>
               <TouchableOpacity style={styles.signUpBtn} onPress={() => { navigation.navigate('SignUp') }}>
-                <Text style={styles.btnText}>Регистрация</Text>
+                <Text style={styles.btnText}>Зарегистрироваться</Text>
               </TouchableOpacity>
             </View>
 
@@ -150,12 +148,11 @@ const styles = StyleSheet.create({
       
     },
     signInBtn: {
-      width: 272,
+      width: 298,
       height: 46,
-      alignItems: 'center',
     },
     signUpBtn: {
-      width: 272,
+      width: 298,
       height: 46,
       borderWidth: 1,
       borderColor: '#FFFFFF',
@@ -168,6 +165,5 @@ const styles = StyleSheet.create({
       fontSize: 24,
       textAlign: 'center',
       lineHeight: 46,
-      // fontFamily: 'Montserrat'
     }
 })

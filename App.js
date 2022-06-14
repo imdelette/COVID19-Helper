@@ -1,7 +1,6 @@
-import { useState, useEffect, useReducer, useCallback, useMemo, React, } from 'react';
-import { View, ActivityIndicator, BackHandler, Text, StyleSheet, useWindowDimensions, AppLoading } from "react-native";
-import getAuth from '@react-native-firebase/auth';
-import useFonts from './src/hooks/useFonts';
+import { React, } from 'react';
+import { useWindowDimensions, } from "react-native";
+import auth from '@react-native-firebase/auth';
 
 import * as SplashScreen from 'expo-splash-screen';
 
@@ -11,39 +10,7 @@ import DrawerNavigator from './src/navigation/DrawerNavigator';
 
 export default function App() {
 
-  // const LoadFonts = async () => {
-  //   await useFonts();
-  // };
-
   const { width, height } = useWindowDimensions();
-
-  // const
-
-
-  // useEffect(() => {
-  //   async function prepare() {
-  //     try {
-  //       await fontsLoading;
-  //       await SplashScreen.preventAutoHideAsync();
-  //     } catch (e) {
-  //       console.warn(e);
-  //     } finally {
-  //       setAppIsReady(true);
-  //     }
-  //   }
-
-  //   prepare();
-  // }, []);
-
-  // const onLayoutRootView = useCallback(async () => {
-  //   if (appIsReady) {
-  //     await SplashScreen.hideAsync();
-  //   }
-  // }, [appIsReady]);
-
-  // if (!appIsReady) {
-  //   return null;
-  // }
 
 //   <View style={styles.container}>
 //     <LinearGradient
@@ -87,18 +54,3 @@ export default function App() {
     </NavigationContainer>
   )
 }
-
-const styles = StyleSheet.create({
-  container: {
-    alignContent: 'center',
-    justifyContent: 'center',
-  },
-  ellipse: {
-
-  },
-  text: {
-    // fontFamily: 'ms-regular',
-    fontSize: 20,
-    textAlign: 'center'
-  }
-})
