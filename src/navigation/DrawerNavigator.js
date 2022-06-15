@@ -32,7 +32,8 @@ export default function DrawerNavigator({ navigation }) {
           drawerActiveTintColor: 'white',
           drawerInactiveTintColor: 'white',
           swipeEdgeWidth: width / 4,
-          drawerStyle: { width: width * 4 / 6, fontSize: 25 }, 
+          drawerStyle: { width: width * 4 / 6, }, 
+          drawerLabelStyle: { fontSize: 16 }
         }}
         >
       <Drawer.Screen 

@@ -1,6 +1,6 @@
 import { React, useContext } from 'react';
 import { View, Text, ImageBackground, Image, StyleSheet, Alert, useWindowDimensions, useEffect } from 'react-native';
-import { DrawerContentScrollView, DrawerItemList } from '@react-navigation/drawer';
+import { DrawerContentScrollView, DrawerItem, DrawerItemList } from '@react-navigation/drawer';
 import { useNavigation } from '@react-navigation/native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import Ionicons from 'react-native-vector-icons/Ionicons';
@@ -52,9 +52,11 @@ export default function CustomDrawer(props) {
                 colors={['#B2FEFA', '#0ED2F7']}
                 style={{ width: width * 4 / 6, height: height}}
             >
-                <TouchableOpacity style={styles.logoContainer} onPress={() => props.navigation.navigate('DrawerHome')}>
-                    <Image style={styles.img} source={require('../assets/images/logo2.png')} />
+                <TouchableOpacity style={styles.logo} onPress={() => props.navigation.navigate('DrawerHome')}>
+                    <Image style={{ resizeMode: 'contain', aspectRatio: 3 }} source={require('../assets/images/logo2.png')} />
                 </TouchableOpacity>
+
+                <Image style={{ position: 'absolute', top: 550, left: 50 }} source={require('../assets/images/crosses-drawer.png')} />
 
                 <View style={styles.user}>
                     <Image style={styles.userIcon} source={require('../assets/images/user-icon.png')}/>
@@ -70,12 +72,8 @@ export default function CustomDrawer(props) {
                     onPress={() =>  SignOutProfile() }
                 >
                     <View style={styles.footer}>
-                        <Ionicons
-                            name='log-out-outline'
-                            size={25}
-                            color='white'
-                        />
-                        <Text style={{ color: 'white', fontSize: 18 }}>Выход</Text>
+                        <Image source={require('../assets/images/exit-icon.png')} />
+                        <Text style={{ color: 'white', fontSize: 16, width: 60 }}>Выход</Text>
                     </View>
                 </TouchableOpacity>
             </LinearGradient>
@@ -89,13 +87,11 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
     },
-    logoContainer: {
-        marginTop: 25,
-        marginBottom: 25,
-    },
-    img: {
-        height: 75,
-        width: "100%",
+    logo: {
+        justifyContent: 'center',
+        alignSelf: 'center',
+        marginVertical: 40,
+        height: 'auto',
     },
     userIcon: {
         marginBottom: 10,
@@ -103,6 +99,7 @@ const styles = StyleSheet.create({
     userText: {
         color: 'white',
         fontSize: 16,
+        width: 120,
         fontWeight: 'bold'
     },
     user: {
@@ -119,6 +116,7 @@ const styles = StyleSheet.create({
     footer: {
         flexDirection: 'row',
         textAlign: 'center',
+        alignItems: 'center',
         padding: 20,
     }
 })

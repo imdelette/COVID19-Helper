@@ -7,8 +7,13 @@ import * as SplashScreen from 'expo-splash-screen';
 import { NavigationContainer } from '@react-navigation/native';
 import WelcomeStackNavigator from './src/navigation/WelcomeStackNavigator';
 import DrawerNavigator from './src/navigation/DrawerNavigator';
+import {useFonts} from './src/hooks/useFonts';
 
 export default function App() {
+
+  const LoadFonts = async () => {
+    await useFonts();
+  };
 
   const { width, height } = useWindowDimensions();
 
