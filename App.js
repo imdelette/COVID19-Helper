@@ -1,29 +1,27 @@
 import { React, } from 'react';
-import { useWindowDimensions, } from "react-native";
+import { useWindowDimensions, useState, useCallback, useEffect } from "react-native";
+import { NavigationContainer } from '@react-navigation/native';
 import auth from '@react-native-firebase/auth';
+import messaging from '@react-native-firebase/messaging';
+import PushNotification from 'react-native-push-notification';
 
 import * as SplashScreen from 'expo-splash-screen';
 
-import { NavigationContainer } from '@react-navigation/native';
 import WelcomeStackNavigator from './src/navigation/WelcomeStackNavigator';
 import DrawerNavigator from './src/navigation/DrawerNavigator';
-import {useFonts} from './src/hooks/useFonts';
+import { useFonts } from './src/hooks/useFonts';
+
+import { createStackNavigator } from '@react-navigation/stack';
+
+const Stack = createStackNavigator();
 
 export default function App() {
 
-  const LoadFonts = async () => {
-    await useFonts();
-  };
-
   const { width, height } = useWindowDimensions();
 
-//   <View style={styles.container}>
-//     <LinearGradient
-//       // Background Linear Gradient
-//       colors={['#B2FEFA', '#0ED2F7']}
-//       style={[styles.background, { width, height, marginTop: getStatusBarHeight() },]}
-//     />
-// </View>
+  const loadFonts = async () => {
+    await useFonts();
+  };
 
   const isLoggedIn = async() => {
     try {

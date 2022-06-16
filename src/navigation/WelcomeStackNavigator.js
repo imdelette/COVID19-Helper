@@ -4,7 +4,7 @@ import auth from '@react-native-firebase/auth';
 
 import WelcomeScreen from '../screens/WelcomeScreen';
 import SignInScreen from '../screens/SignInScreen';
-import RegistrationScreen from '../screens/RegistrationScreen';
+import SignUpScreen from '../screens/SignUpScreen';
 import TabNavigator from './TabNavigator';
 import DrawerNavigator from './DrawerNavigator';
 
@@ -36,7 +36,7 @@ export default function WelcomeStackNavigator() {
                     title: '',
                     headerShown: false,
                     }}
-                component={RegistrationScreen}
+                component={SignUpScreen}
             />
 
             <Stack.Screen

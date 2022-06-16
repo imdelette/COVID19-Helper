@@ -1,8 +1,6 @@
 import { React, useState } from 'react';
 import { Text, View, ScrollView, SectionList, FlatList, TouchableOpacity, Button, StyleSheet, useWindowDimensions } from 'react-native';
 
-import { globalStyle } from  '../styles/style';
-
 export default function ExcerciseGroupsScreen({ navigation }) {
 
     const dataExcerciseGroups = [

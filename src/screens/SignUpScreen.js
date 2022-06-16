@@ -3,7 +3,7 @@ import { Text, View, useState, TextInput, Image, StyleSheet, TouchableOpacity, u
 import auth from '@react-native-firebase/auth';
 import { LinearGradient } from "expo-linear-gradient";
 
-export default function RegistrationScreen({ navigation }) {
+export default function SignUpScreen({ navigation }) {
 
     const { height, width } = useWindowDimensions();
 
