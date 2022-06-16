@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, StyleSheet, Text, } from "react-native";
 import { TouchableOpacity } from 'react-native-gesture-handler';
-import exercises from '../../components/exercises';
+import exercises from '../../data/exercises';
 
 export default function DyspneaReliefExcercisesScreen({ navigation }) {
     
